@@ -14,10 +14,6 @@ public class SplashScreenController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // You can perform initialization tasks here if needed
-        // For example, you can set the loading label or perform any necessary setup.
-        loadingLabel.setText("Loading...");
 
-        // You might want to load any necessary resources or perform background tasks here.
     }
 }

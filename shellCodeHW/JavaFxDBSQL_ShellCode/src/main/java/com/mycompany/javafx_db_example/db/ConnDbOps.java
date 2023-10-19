@@ -85,7 +85,7 @@ public class ConnDbOps {
 
         return userList;
     }
-
+//finds info based on the name
     public void queryUserByName(String name) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://csc311111cccccc.mariadb.database.azure.com/gfgfg555", "adminshahin@csc311111cccccc", "farmingdale$123");
@@ -109,7 +109,7 @@ public class ConnDbOps {
         }
 
     }
-
+// this function takes all the users that exist in the database with all of their info that is in the server
     public void listAllUsers() {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://csc311111cccccc.mariadb.database.azure.com/gfgfg555", "adminshahin@csc311111cccccc", "farmingdale$123");
@@ -135,7 +135,7 @@ public class ConnDbOps {
         }
 
     }
-
+    // the insert function has been integrated with the person class, It was intended to insert data and save it in order for the controller class to connect to it
     public void insertUser(Person person) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://csc311111cccccc.mariadb.database.azure.com/gfgfg555", "adminshahin@csc311111cccccc", "farmingdale$123");
@@ -158,7 +158,7 @@ public class ConnDbOps {
         }
 
     }
-
+        // the function below is connected to the person class and the
     public void updateUser(Person person) {
         try {
             Connection conn = DriverManager.getConnection("jdbc:mysql://csc311111cccccc.mariadb.database.azure.com/gfgfg555", "adminshahin@csc311111cccccc", "farmingdale$123");
@@ -181,10 +181,12 @@ public class ConnDbOps {
         }
 
     }
-
+//deletes the user by finding the email
     public void deleteUser(Person person) {
         try {
+            //connects to the server
             Connection conn = DriverManager.getConnection("jdbc:mysql://csc311111cccccc.mariadb.database.azure.com/gfgfg555", "adminshahin@csc311111cccccc", "farmingdale$123");
+            //sql data base which sets the parameters for username and email
             String sql = "DELETE FROM users WHERE email=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, person.getEmail());

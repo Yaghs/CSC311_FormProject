@@ -10,5 +10,4 @@
             <Image url="@SUNY_Farmingdale.png" />
         </image>
     </ImageView>
-    <Label fx:id="loadingLabel" layoutX="380.0" layoutY="320.0" textFill="#fff" />
 </AnchorPane>

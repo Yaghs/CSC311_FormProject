@@ -80,16 +80,19 @@ public class DB_GUI_Controller implements Initializable {
         System.exit(0);
     }
 
-    @FXML
+@FXML
     protected void editRecord() {
-        Person p = (Person)this.tv.getSelectionModel().getSelectedItem();
-        Person p2 = new Person(this.name.getText(), this.email.getText(), this.address.getText(), this.password.getText(), this.phone.getText());
+
+    Person p = tv.getSelectionModel().getSelectedItem();
+    if (p != null) {
+        Person p2 = new Person(name.getText(), email.getText(), address.getText(), password.getText(), phone.getText());
         ConnDbOps dbOps = new ConnDbOps();
         dbOps.updateUser(p2);
         this.loadUserData();
     }
+}
 
-    @FXML
+        @FXML
     protected void deleteRecord() {
         Person p = (Person)this.tv.getSelectionModel().getSelectedItem();
         ConnDbOps dbOps = new ConnDbOps();

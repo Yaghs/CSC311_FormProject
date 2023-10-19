@@ -12,28 +12,23 @@ import java.util.Scanner;
 
 public class App extends Application {
     private static ConnDbOps cdbop;
-
+    //loads the interface_gui.fxml I tried to implement the splashscreen and the log in button but for some odd reason it kept saying my fxml version was out of date
+    //the issue got worse when I accidentally updated intellij to its latest version
     @Override
     public void start(Stage stage) throws IOException {
-        // Launch the GUI directly
-        changeScene(stage, "db_interface_gui.fxml");
+        // Launch the GUI by loading the FXML file
+        Parent root = FXMLLoader.load(getClass().getResource("db_interface_gui.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
-    private void changeScene(Stage stage, String fxml) {
-        try {
-            Parent newRoot = FXMLLoader.load(getClass().getResource(fxml));
-            Scene newScene = new Scene(newRoot, 850, 560);
-            newScene.getStylesheets().add("style.css");
-            stage.setScene(newScene);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
 
     public static void main(String[] args) {
         cdbop = new ConnDbOps();
         Scanner scan = new Scanner(System.in);
-
+        //menu
         char input;
         do {
             System.out.println(" ");
@@ -53,9 +48,10 @@ public class App extends Application {
 
             switch (input) {
                 case 'g':
-                    // Launch the GUI directly
+                    // Launch the GUI, splash screen will be shown first
                     launch(args);
                     break;
+
 
                 case 'c':
                     cdbop.connectToDatabase(); // Connect to the database
@@ -64,7 +60,7 @@ public class App extends Application {
                 case 'a':
                     cdbop.listAllUsers(); // List all users in the DB
                     break;
-
+                // insert new data for a new user(same feature can be done via gui)
                 case 'i':
                     Person p;
                     System.out.print("Enter Name: ");
@@ -85,6 +81,22 @@ public class App extends Application {
                     System.out.print("Enter the name to query: ");
                     String queryName = scan.nextLine();
                     cdbop.queryUserByName(queryName);
+                    break;
+                //safely deletes your info just by finding your email
+                case 'd':
+                    System.out.print("Enter the email to delete: ");
+                    String deleteEmail = scan.nextLine();
+                    Person personToDelete = new Person("", deleteEmail, "", "", "");
+                    cdbop.deleteUser(personToDelete);
+                    break;
+                //updates your email and name
+                case 'k':
+                    System.out.print("Enter the email to update: ");
+                    String updateEmail = scan.nextLine();
+                    System.out.print("Enter the new name: ");
+                    String newName = scan.nextLine();
+                    Person updatedPerson = new Person(newName, updateEmail, "", "", "");
+                    cdbop.updateUser(updatedPerson);
                     break;
 
                 case 'e':
