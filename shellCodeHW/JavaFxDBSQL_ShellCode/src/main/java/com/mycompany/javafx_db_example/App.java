@@ -126,13 +126,19 @@ public class App extends Application {
                     Person personToDelete = new Person("", deleteEmail, "", "", "");
                     cdbop.deleteUser(personToDelete);
                     break;
-                //updates your email and name
+                //updates your info
                 case 'k':
-                    System.out.print("Enter the email to update: ");
-                    String updateEmail = scan.nextLine();
                     System.out.print("Enter the new name: ");
                     String newName = scan.nextLine();
-                    Person updatedPerson = new Person(newName, updateEmail, "", "", "");
+                    System.out.print("Enter the email to update: ");
+                    String updateEmail = scan.nextLine();
+                    System.out.print("Enter the new address: ");
+                    String newAddress = scan.nextLine();
+                    System.out.print("Enter the new password: ");
+                    String newPassword = scan.nextLine();
+                    System.out.print("Enter the new phone Number: ");
+                    String newPhone = scan.nextLine();
+                    Person updatedPerson = new Person(newName, updateEmail, newAddress, newPassword, newPhone);
                     cdbop.updateUser(updatedPerson);
                     break;
 
