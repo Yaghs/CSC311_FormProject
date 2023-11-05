@@ -1,26 +1,62 @@
+package com.mycompany.javafx_db_example;
 
-//package com.mycompany.javafx_db_example;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
-/**public class Log_password_controller {
-    private Stage stage;
+import java.io.IOException;
 
-    public Log_password_controller() {
-    }
+
+public class Log_password_controller {
 
     @FXML
-    private void initialize() {
-    }
-
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
-
+    private Button loginButton;
+    @FXML
+    private Button SignUpButton;
     @FXML
     private void handleLogInButtonAction(ActionEvent event) {
-        boolean loginSuccessful = true;
-        if (loginSuccessful && this.stage != null) {
-            App.changeScene(this.stage, "db_interface_gui.fxml");
-        }
+        try {
+            // Load the FXML for the new scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("db_interface_gui.fxml"));
+            Parent root = loader.load();
 
+            // Get the current stage (window) from the event that triggered the method
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene on the current stage
+            stage.setScene(new Scene(root));
+
+            // Optional: set the title of the window and show the stage again
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}**/
+
+    @FXML
+    private void handleSignUpButtonAction(ActionEvent event) {
+        try {
+            // Load the FXML for the new scene
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Registration.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage (window) from the event that triggered the method
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene on the current stage
+            stage.setScene(new Scene(root));
+
+            // Optional: set the title of the window and show the stage again
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
